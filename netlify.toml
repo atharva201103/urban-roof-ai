@@ -1,3 +1,6 @@
 [build]
   command = "bash ./netlify/install_rust_and_build.sh"
   publish = "frontend"
+
+[build.environment]
+  PYO3_USE_ABI3_FORWARD_COMPATIBILITY = "1"
