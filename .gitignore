@@ -1,0 +1,16 @@
+# Environment variables (API keys)
+.env
+
+# Virtual environment
+myenv/
+
+# Python cache
+__pycache__/
+*.pyc
+
+# Extracted images output
+extracted_images/
+
+# Uploaded documents and generated reports
+input_docs/
+output/

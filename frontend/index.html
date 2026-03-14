@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Urban Roof Analysis Dashboard</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Marked.js for rendering markdown beautifully -->
+    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <div class="app-container">
+        <!-- Sidebar Navigation -->
+        <aside class="sidebar">
+            <div class="sidebar-header">
+                <div class="logo">
+                    <i class="fa-solid fa-house-chimney-crack"></i>
+                    <span>Urban Roof</span>
+                </div>
+            </div>
+            <nav class="sidebar-nav">
+                <a href="#" class="nav-item active">
+                    <i class="fa-solid fa-chart-pie"></i>
+                    <span>Analysis Dashboard</span>
+                </a>
+                <a href="#" class="nav-item">
+                    <i class="fa-solid fa-file-pdf"></i>
+                    <span>Past Reports</span>
+                </a>
+                <a href="#" class="nav-item" style="margin-top: auto;">
+                    <i class="fa-solid fa-gear"></i>
+                    <span>Settings</span>
+                </a>
+            </nav>
+        </aside>
+
+        <!-- Main Content Area -->
+        <main class="main-content">
+            <header class="top-nav">
+                <h2>New Inspection Analysis</h2>
+                <div class="user-profile">
+                    <div class="avatar">UR</div>
+                </div>
+            </header>
+
+            <div class="dashboard-grid">
+                <!-- Data Input Section -->
+                <section class="upload-section">
+                    <div class="section-header">
+                        <h3>Required Documents</h3>
+                        <p>Upload both reports to generate a comprehensive AI-powered diagnostic.</p>
+                    </div>
+                    
+                    <div class="upload-zones-container">
+                        <!-- Inspection Report Zone -->
+                        <div class="upload-card">
+                            <div class="card-header">
+                                <i class="fa-solid fa-clipboard-check text-primary"></i>
+                                <h4>1. Inspection Report</h4>
+                            </div>
+                            <div class="drop-zone" id="drop-zone-inspection">
+                                <i class="fa-solid fa-cloud-arrow-up upload-icon"></i>
+                                <p class="drop-text">Drag & drop or <span>browse</span></p>
+                                <p class="file-hint">Accepts .pdf, .docx</p>
+                                <input type="file" id="file-input-inspection" accept=".pdf,.docx,application/pdf,application/vnd.openxmlformats-officedocument.wordprocessingml.document" hidden>
+                            </div>
+                            <div class="file-status hidden" id="status-inspection">
+                                <i class="fa-solid fa-file-lines file-icon"></i>
+                                <div class="file-details">
+                                    <span class="file-name">document.pdf</span>
+                                    <span class="file-size">4.2 MB</span>
+                                </div>
+                                <i class="fa-solid fa-circle-check text-success"></i>
+                            </div>
+                        </div>
+
+                        <!-- Thermal Report Zone -->
+                        <div class="upload-card">
+                            <div class="card-header">
+                                <i class="fa-solid fa-temperature-half text-secondary"></i>
+                                <h4>2. Thermal Report</h4>
+                            </div>
+                            <div class="drop-zone" id="drop-zone-thermal">
+                                <i class="fa-solid fa-cloud-arrow-up upload-icon"></i>
+                                <p class="drop-text">Drag & drop or <span>browse</span></p>
+                                <p class="file-hint">Accepts .pdf, .docx</p>
+                                <input type="file" id="file-input-thermal" accept=".pdf,.docx,application/pdf,application/vnd.openxmlformats-officedocument.wordprocessingml.document" hidden>
+                            </div>
+                            <div class="file-status hidden" id="status-thermal">
+                                <i class="fa-solid fa-file-lines file-icon"></i>
+                                <div class="file-details">
+                                    <span class="file-name">document.pdf</span>
+                                    <span class="file-size">4.2 MB</span>
+                                </div>
+                                <i class="fa-solid fa-circle-check text-success"></i>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Action Area -->
+                    <div class="action-container">
+                        <button class="btn-primary analyze-btn" id="analyze-btn" disabled>
+                            <i class="fa-solid fa-wand-magic-sparkles"></i> Run AI Analysis
+                        </button>
+                    </div>
+
+                    <!-- Loading State -->
+                    <div class="loading-state hidden" id="loading-state">
+                        <div class="spinner"></div>
+                        <h4 id="loading-text">Extracting Documents...</h4>
+                        <p>The AI agents are processing the data. This usually takes 1-2 minutes.</p>
+                        
+                        <div class="progress-steps">
+                            <div class="step active" id="step-1">1. Extraction</div>
+                            <div class="step" id="step-2">2. Reasoning</div>
+                            <div class="step" id="step-3">3. Final Report</div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Results Display Section -->
+                <section class="results-section hidden" id="results-section">
+                    <div class="section-header">
+                        <h3>Diagnostic Report</h3>
+                        <div class="report-actions">
+                            <button class="btn-icon" title="Download Markdown"><i class="fa-solid fa-download"></i></button>
+                            <button class="btn-icon" title="Copy Text"><i class="fa-solid fa-copy"></i></button>
+                        </div>
+                    </div>
+                    
+                    <div class="report-container">
+                        <div id="markdown-output" class="markdown-body">
+                            <!-- Rendered Markdown goes here -->
+                        </div>
+                    </div>
+                </section>
+            </div>
+        </main>
+    </div>
+
+    <!-- Background decorative gradients -->
+    <div class="bg-gradient bg-1"></div>
+    <div class="bg-gradient bg-2"></div>
+
+    <script src="script.js"></script>
+</body>
+</html>
