@@ -9,10 +9,10 @@ source "$HOME/.cargo/env"
 export PATH="$HOME/.cargo/bin:$PATH"
 
 # Ensure pip is up-to-date
-pip install --upgrade pip
+python -m pip install --upgrade pip
 
 # Now continue with the normal dependency install from moved file
-pip install -r frontend/requirements.txt
+python -m pip install -r frontend/requirements.txt
 
 # Netlify normally handles the rest of the build or serving of static files,
 # but since the backend is python (FastAPI), Netlify can only serve the `frontend` folder statically.
