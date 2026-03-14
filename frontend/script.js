@@ -23,6 +23,12 @@ document.addEventListener('DOMContentLoaded', () => {
     const step2 = document.getElementById('step-2');
     const step3 = document.getElementById('step-3');
 
+    // API Endpoint Configuration
+    // If running on localhost, use relative path. If on Netlify (live), point to the Render backend.
+    const API_URL = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1' 
+        ? '/api/analyze' 
+        : 'https://urban-roof-api.onrender.com/api/analyze'; // This will be your Render URL
+
     // Make target specific helper to reduce duplication
     function setupDropZone(dropZoneElem, inputElem, type) {
         
@@ -141,7 +147,7 @@ document.addEventListener('DOMContentLoaded', () => {
         const stepInterval = simulateProgressSteps();
 
         try {
-            const response = await fetch('/api/analyze', {
+            const response = await fetch(API_URL, {
                 method: 'POST',
                 body: formData
             });
